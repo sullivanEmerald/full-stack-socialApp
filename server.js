@@ -9,6 +9,7 @@ const connectDB = require('./config/database')
 const mainRoutes = require('./routers/main')
 const postRoute = require('./routers/posts')
 const methodOverride = require('method-override')
+const CommentRoute = require('./routers/comment')
 
 
 
@@ -51,6 +52,7 @@ app.use(flash())
 
 app.use('/', mainRoutes)
 app.use('/post', postRoute)
+app.use('/comment', CommentRoute)
 
 
 

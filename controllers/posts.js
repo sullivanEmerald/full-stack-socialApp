@@ -1,5 +1,6 @@
 const cloudinary =  require('../middleware/cloudinary')
  const Posts = require('../model/Posts')
+ const Comment =  require('../model/comment')
  
 
 module.exports = {
@@ -36,7 +37,8 @@ module.exports = {
     findOne : async (req, res) =>{
         try {
             const singlePost =  await Posts.findById(req.params.id)
-            res.render('post', { singlePost : singlePost , user : req.user})
+            const comments = await Comment.find({ post : req.params.id}).lean()
+            res.render('post', { singlePost : singlePost , user : req.user, comments : comments})
         } catch (error) {
             console.error(error)
         }
